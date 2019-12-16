@@ -24,7 +24,7 @@ class LinkedNode:
 
     def __init__(self, key=None, value=None):
         """
-            "key & value": 一般一样
+            "key & value":
         :param key:
         :param value:
         """
@@ -80,8 +80,10 @@ class LRU:
             self.hkeys[key].pre = self.head_sentinel
             self.head_sentinel.next = self.hkeys[key]
             return True
+
         # 数据不存在
         node = LinkedNode(key, value)
+
         # 判断链表容量是否已满
         if len(self.hkeys) == self.capacity:
             self.hkeys.pop(self.tail_sentinel.pre.key)
@@ -92,6 +94,7 @@ class LRU:
         self.head_sentinel.next = node
         node.next.pre = node
 
+        # 添加新数据到哈希表
         self.hkeys[key] = node
         return True
 
